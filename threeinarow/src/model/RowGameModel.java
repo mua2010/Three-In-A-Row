@@ -2,14 +2,14 @@ package model;
 
 public class RowGameModel {
     public static final String GAME_END_NOWINNER = "Game ends in a draw";
-
-    public RowBlockModel[][] blocksData = new RowBlockModel[3][3];
+    // CHANGES: Made class vars private and added getters and setters
+    private RowBlockModel[][] blocksData = new RowBlockModel[3][3];
 
     /**
      * The current player taking their turn
      */
-    public String player = "1";
-    public int movesLeft = 9;
+    private String player = "1";
+    private int movesLeft = 9;
 
     private String finalResult = null;
 
@@ -29,5 +29,29 @@ public class RowGameModel {
 
     public void setFinalResult(String finalResult) {
         this.finalResult = finalResult;
+    }
+
+    public String getPlayer() {
+        return this.player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
+
+    public int getMovesLeft() {
+        return this.movesLeft;
+    }
+
+    public void setMovesLeft(int movesLeft) {
+        this.movesLeft = movesLeft;
+    }
+
+    public RowBlockModel[][] getBlocksData() {
+        return this.blocksData;
+    }
+
+    public void setBlocksData(RowBlockModel[][] blocksData) {
+        this.blocksData = blocksData;
     }
 }
