@@ -56,11 +56,11 @@ public class RowGameController {
 
 		String player = gameModel.player;
 		int movesLeft = gameModel.movesLeft;
-		RowGameBoardView gameViewGameBoardView = gameView.getGameBoardView();
+		JButton[][] boardViewBlocks = gameView.getGameBoardView().getBlocks();
 
 		if (player.equals("1")) {
 			// Check whether player 1 won
-			if (block == gameViewGameBoardView.blocks[0][0]) {
+			if (block == boardViewBlocks[0][0]) {
 				gameModel.blocksData[0][0].setContents("X");
 				gameModel.blocksData[0][0].setIsLegalMove(false);
 				gameModel.player = "2";
@@ -82,7 +82,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[0][1]) {
+			} else if (block == boardViewBlocks[0][1]) {
 				gameModel.blocksData[0][1].setContents("X");
 				gameModel.blocksData[0][1].setIsLegalMove(false);
 				gameModel.player = "2";
@@ -100,7 +100,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[0][2]) {
+			} else if (block == boardViewBlocks[0][2]) {
 				gameModel.blocksData[0][2].setContents("X");
 				gameModel.blocksData[0][2].setIsLegalMove(false);
 				gameModel.player = "2";
@@ -122,7 +122,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][0]) {
+			} else if (block == boardViewBlocks[1][0]) {
 				gameModel.blocksData[1][0].setContents("X");
 				gameModel.blocksData[1][0].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -142,7 +142,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][1]) {
+			} else if (block == boardViewBlocks[1][1]) {
 				gameModel.blocksData[1][1].setContents("X");
 				gameModel.blocksData[1][1].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -170,7 +170,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][2]) {
+			} else if (block == boardViewBlocks[1][2]) {
 				gameModel.blocksData[1][2].setContents("X");
 				gameModel.blocksData[1][2].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -190,7 +190,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][0]) {
+			} else if (block == boardViewBlocks[2][0]) {
 				gameModel.blocksData[2][0].setContents("X");
 				gameModel.blocksData[2][0].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -214,7 +214,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][1]) {
+			} else if (block == boardViewBlocks[2][1]) {
 				gameModel.blocksData[2][1].setContents("X");
 				gameModel.blocksData[2][1].setIsLegalMove(false);
 				// Enabled the space on top of this one
@@ -234,7 +234,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][2]) {
+			} else if (block == boardViewBlocks[2][2]) {
 				gameModel.blocksData[2][2].setContents("X");
 				gameModel.blocksData[2][2].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -261,7 +261,7 @@ public class RowGameController {
 			}
 		} else {
 			// Check whether player 2 won
-			if (block == gameViewGameBoardView.blocks[0][0]) {
+			if (block == boardViewBlocks[0][0]) {
 				gameModel.blocksData[0][0].setContents("O");
 				gameModel.blocksData[0][0].setIsLegalMove(false);
 				gameModel.player = "1";
@@ -283,7 +283,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[0][1]) {
+			} else if (block == boardViewBlocks[0][1]) {
 				gameModel.blocksData[0][1].setContents("O");
 				gameModel.blocksData[0][1].setIsLegalMove(false);
 				gameModel.player = "1";
@@ -301,7 +301,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[0][2]) {
+			} else if (block == boardViewBlocks[0][2]) {
 				gameModel.blocksData[0][2].setContents("O");
 				gameModel.blocksData[0][2].setIsLegalMove(false);
 				gameModel.player = "1";
@@ -323,7 +323,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][0]) {
+			} else if (block == boardViewBlocks[1][0]) {
 				gameModel.blocksData[1][0].setContents("O");
 				gameModel.blocksData[1][0].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -343,7 +343,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][1]) {
+			} else if (block == boardViewBlocks[1][1]) {
 				gameModel.blocksData[1][1].setContents("O");
 				gameModel.blocksData[1][1].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -371,7 +371,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[1][2]) {
+			} else if (block == boardViewBlocks[1][2]) {
 				gameModel.blocksData[1][2].setContents("O");
 				gameModel.blocksData[1][2].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -391,7 +391,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][0]) {
+			} else if (block == boardViewBlocks[2][0]) {
 				gameModel.blocksData[2][0].setContents("O");
 				gameModel.blocksData[2][0].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -415,7 +415,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][1]) {
+			} else if (block == boardViewBlocks[2][1]) {
 				gameModel.blocksData[2][1].setContents("O");
 				gameModel.blocksData[2][1].setIsLegalMove(false);
 				// Enable the space on top of this one
@@ -435,7 +435,7 @@ public class RowGameController {
 						gameModel.setFinalResult(GAME_END_NOWINNER);
 					}
 				}
-			} else if (block == gameViewGameBoardView.blocks[2][2]) {
+			} else if (block == boardViewBlocks[2][2]) {
 				gameModel.blocksData[2][2].setContents("O");
 				gameModel.blocksData[2][2].setIsLegalMove(false);
 				// Enable the space on top of this one
