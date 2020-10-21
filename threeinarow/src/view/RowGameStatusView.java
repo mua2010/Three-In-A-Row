@@ -10,8 +10,18 @@ import controller.RowGameController;
 import model.RowGameModel;
 
 public class RowGameStatusView implements RowGameView {
-	public JTextArea playerturn = new JTextArea();
-	public JPanel messages = new JPanel(new FlowLayout());
+	// CHANGE: Made playerturn and messages to private
+	// and create getter and setter for messages
+	private JTextArea playerturn = new JTextArea();
+	private JPanel messages = new JPanel(new FlowLayout());
+
+	public JPanel getMessages(){
+		return this.messages;
+	}
+
+	public void setMessages(JPanel msgs){
+		this.messages = msgs;
+	}
 
 	public RowGameStatusView(RowGameController gameController) {
 		super();
