@@ -18,7 +18,7 @@ public class RowGameModel {
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                blocksData[row][col] = new RowBlockModel(this);
+                blocksData[row][col] = new RowBlockModel();
             } // end for col
         } // end for row
     }
