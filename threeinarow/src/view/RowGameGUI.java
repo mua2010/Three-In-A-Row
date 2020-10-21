@@ -34,7 +34,8 @@ public class RowGameGUI implements RowGameView {
         options.add(reset);
 
         gameStatusView = new RowGameStatusView(this.gameController);
-        JPanel messages = gameStatusView.messages;
+        // called the getter instead of the class variable
+        JPanel messages = gameStatusView.getMessages();
 
         gui.add(gamePanel, BorderLayout.NORTH);
         gui.add(options, BorderLayout.CENTER);
