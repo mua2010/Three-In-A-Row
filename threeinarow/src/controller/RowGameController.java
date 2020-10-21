@@ -21,8 +21,8 @@ import view.RowGameGUI;
 public class RowGameController {
 	public static final String GAME_END_NOWINNER = "Game ends in a draw";
 
-	public RowGameModel gameModel;
-	public RowGameGUI gameView;
+	private RowGameModel gameModel;
+	private RowGameGUI gameView;
 
 	/**
 	 * Creates a new game initializing the GUI.
