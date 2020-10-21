@@ -15,8 +15,23 @@ import controller.RowGameController;
 import model.RowGameModel;
 
 public class RowGameBoardView implements RowGameView {
-    public JButton[][] blocks = new JButton[3][3];
-    public JPanel gamePanel = new JPanel(new FlowLayout());
+    // CHANGE: Made class variables private
+    private JButton[][] blocks = new JButton[3][3];
+    private JPanel gamePanel = new JPanel(new FlowLayout());
+
+    // Made class getters and setters
+    public JButton[][] getBlocks(){
+        return this.blocks;
+    }
+    public void setBlocks(JButton[][] blocks){
+        this.blocks = blocks;
+    }
+    public JPanel getGamePanel(){
+        return this.gamePanel;
+    }
+    public void setGamePanel(JPanel gamePanel){
+        this.gamePanel = gamePanel;
+    }
 
     public RowGameBoardView(RowGameController gameController) {
         super();
