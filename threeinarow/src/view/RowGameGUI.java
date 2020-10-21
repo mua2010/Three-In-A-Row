@@ -10,12 +10,27 @@ import model.RowGameModel;
 import controller.RowGameController;
 
 public class RowGameGUI implements RowGameView {
-    public JFrame gui = new JFrame("Three in a Row");
-    public RowGameBoardView gameBoardView;
-    public JButton reset = new JButton("Reset");
-    public RowGameStatusView gameStatusView;
+    // CHANGE: Made class variables private
+    private JFrame gui = new JFrame("Three in a Row");
+    private RowGameBoardView gameBoardView;
+    private JButton reset = new JButton("Reset");
+    private RowGameStatusView gameStatusView;
 
     private RowGameController gameController;
+
+    // Made class getters and setters
+    public JFrame getGui(){
+        return this.gui;
+    }
+    public void setGui(JFrame gui){
+        this.gui = gui;
+    }
+    public RowGameBoardView getGameBoardView(){
+        return this.gameBoardView;
+    }
+    public void setGameBoardView(RowGameBoardView gameBoardView){
+        this.gameBoardView = gameBoardView;
+    }
 
     /**
      * Creates a new game initializing the GUI.
