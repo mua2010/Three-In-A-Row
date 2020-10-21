@@ -43,7 +43,7 @@ public class RowGameGUI implements RowGameView {
         gui.setResizable(true);
 
         gameBoardView = new RowGameBoardView(this.gameController);
-        JPanel gamePanel = gameBoardView.gamePanel;
+        JPanel gamePanel = gameBoardView.getGamePanel();
 
         JPanel options = new JPanel(new FlowLayout());
         options.add(reset);
