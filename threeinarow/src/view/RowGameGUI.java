@@ -16,7 +16,7 @@ public class RowGameGUI implements RowGameView {
     private JButton reset = new JButton("Reset");
     private RowGameStatusView gameStatusView;
 
-    private RowGameController gameController;
+    private RowGameModel gameModel;
 
     // Made class getters and setters
     public JFrame getGui(){
@@ -35,20 +35,20 @@ public class RowGameGUI implements RowGameView {
     /**
      * Creates a new game initializing the GUI.
      */
-    public RowGameGUI(RowGameController gameController) {
-        this.gameController = gameController;
+    public RowGameGUI(RowGameModel gameModel) {
+        this.gameModel = gameModel;
 
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
 
-        gameBoardView = new RowGameBoardView(this.gameController);
+        gameBoardView = new RowGameBoardView(this.gameModel);
         JPanel gamePanel = gameBoardView.getGamePanel();
 
         JPanel options = new JPanel(new FlowLayout());
         options.add(reset);
 
-        gameStatusView = new RowGameStatusView(this.gameController);
+        gameStatusView = new RowGameStatusView();
         // called the getter instead of the class variable
         JPanel messages = gameStatusView.getMessages();
 
@@ -58,7 +58,7 @@ public class RowGameGUI implements RowGameView {
 
         reset.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                gameController.resetGame();
+                gameModel.reset();
             }
         });
     }
