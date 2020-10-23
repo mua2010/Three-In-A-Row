@@ -33,7 +33,7 @@ public class RowGameBoardView implements RowGameView {
         this.gamePanel = gamePanel;
     }
 
-    public RowGameBoardView(RowGameController gameController) {
+    public RowGameBoardView(RowGameModel gameModel) {
         super();
 
         JPanel game = new JPanel(new GridLayout(3, 3));
@@ -47,7 +47,7 @@ public class RowGameBoardView implements RowGameView {
                 game.add(blocks[row][column]);
                 blocks[row][column].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        gameController.move((JButton) e.getSource());
+                        gameModel.move1((JButton) e.getSource());
                     }
                 });
             }
