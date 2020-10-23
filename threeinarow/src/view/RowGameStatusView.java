@@ -23,7 +23,7 @@ public class RowGameStatusView implements RowGameView {
 		this.messages = msgs;
 	}
 
-	public RowGameStatusView(RowGameController gameController) {
+	public RowGameStatusView() {
 		super();
 
 		messages.setBackground(Color.white);
