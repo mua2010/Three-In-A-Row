@@ -4,7 +4,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
-import java.awt.event.*;
 
 import adapter.Adapter;
 import model.RowGameModel;
@@ -23,9 +22,6 @@ public class RowGameGUI implements RowGameView {
     // Made class getters and setters
     public JFrame getGui(){
         return this.gui;
-    }
-    public void setGui(JFrame gui){
-        this.gui = gui;
     }
     public RowGameBoardView getGameBoardView(){
         return this.gameBoardView;
