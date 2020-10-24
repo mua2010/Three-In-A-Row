@@ -4,13 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 // import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import controller.RowGameController;
+import adapter.Adapter;
 import model.RowGameModel;
 
 public class RowGameBoardView implements RowGameView {
@@ -34,7 +32,7 @@ public class RowGameBoardView implements RowGameView {
         this.gamePanel = gamePanel;
     }
 
-    public RowGameBoardView(RowGameModel gameModel) {
+    public RowGameBoardView(RowGameModel gameModel, Adapter gameAdapter) {
         super();
         this.rows = gameModel.getRows();
         this.cols = gameModel.getCols();
@@ -48,14 +46,7 @@ public class RowGameBoardView implements RowGameView {
                 blocks[row][column] = new GameJButton(row, column);
                 blocks[row][column].setPreferredSize(new Dimension(75, 75));
                 game.add(blocks[row][column]);
-                blocks[row][column].addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        GameJButton buttonPressed = (GameJButton) e.getSource();
-                        int row = buttonPressed.getRow();
-                        int col = buttonPressed.getCol();
-                        gameModel.move(row, col);
-                    }
-                });
+                blocks[row][column].addActionListener(gameAdapter);
             }
         }
     }

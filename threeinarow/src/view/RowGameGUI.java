@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
 
+import adapter.Adapter;
 import model.RowGameModel;
 import controller.RowGameController;
 
@@ -17,6 +18,7 @@ public class RowGameGUI implements RowGameView {
     private RowGameStatusView gameStatusView;
 
     private RowGameModel gameModel;
+    protected Adapter gameAdapter;
 
     // Made class getters and setters
     public JFrame getGui(){
@@ -31,19 +33,23 @@ public class RowGameGUI implements RowGameView {
     public void setGameBoardView(RowGameBoardView gameBoardView){
         this.gameBoardView = gameBoardView;
     }
+    public JButton getResetButton() {
+        return this.reset;
+    }
 
     /**
      * Creates a new game initializing the GUI.
      */
-    public RowGameGUI(RowGameModel gameModel) {
+    public RowGameGUI(RowGameModel gameModel, RowGameController gameController) {
         this.gameModel = gameModel;
+        this.gameAdapter = new Adapter(this, gameController);
         this.gui = new JFrame(gameModel.getGameType());
 
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
 
-        gameBoardView = new RowGameBoardView(this.gameModel);
+        gameBoardView = new RowGameBoardView(gameModel, this.gameAdapter);
         JPanel gamePanel = gameBoardView.getGamePanel();
 
         JPanel options = new JPanel(new FlowLayout());
@@ -57,11 +63,7 @@ public class RowGameGUI implements RowGameView {
         gui.add(options, BorderLayout.CENTER);
         gui.add(messages, BorderLayout.SOUTH);
 
-        reset.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                gameModel.reset();
-            }
-        });
+        reset.addActionListener(this.gameAdapter);
     }
 
     /**
@@ -71,7 +73,6 @@ public class RowGameGUI implements RowGameView {
      */
     public void update(RowGameModel gameModel) {
         gameBoardView.update(gameModel);
-
         gameStatusView.update(gameModel);
     }
 }
