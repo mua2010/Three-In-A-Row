@@ -30,8 +30,8 @@ public class RowGameApp {
         int rows = 3;
         int cols = 3;
         // "TIC_TAC_TOE"
-        String gameType = "THREE_IN_A_ROW";
-        RowGameModel gameModel = new RowGameModel(gameType, rows, cols); // Observable | PropertyChangeSupport
+        final String GAME_TYPE = "THREE_IN_A_ROW";
+        RowGameModel gameModel = new RowGameModel(GAME_TYPE, rows, cols); // Observable | PropertyChangeSupport
         RowGameController gameController = new RowGameController();
         RowGameGUI gameView = new RowGameGUI(gameModel, gameController); // Observers | PropertyChangeListener
         
