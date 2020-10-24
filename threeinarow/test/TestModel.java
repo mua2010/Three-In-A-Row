@@ -51,7 +51,7 @@ public class TestModel {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNewBlockViolatesPrecondition() {
-        RowBlockModel block = new RowBlockModel(null);
+        RowBlockModel block = new RowBlockModel(null, 0, 0);
         block.setContents(null);
     }
 
