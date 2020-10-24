@@ -13,25 +13,28 @@ import controller.RowGameController;
  */
 public class TestModel {
     private RowGameModel gameModel;
+    RowGameController gameController;
+    RowGameGUI gameView;
 
     @Before
     public void setUp() {
-        gameModel = new RowGameModel(3, 3);
+        gameModel = new RowGameModel("THREE_IN_A_ROW", 3, 3);
+        gameController = new RowGameController();
+        gameView = new RowGameGUI(gameModel, gameController); // Observers | PropertyChangeListener
+        
+        gameModel.setView(gameView);
+        gameController.initializeGame(gameModel);
     }
 
     @After
     public void tearDown() {
         gameModel = null;
+        gameController = null;
+        gameView = null;
     }
 
     @Test
     public void testNewGame() {
-        RowGameController gameController = new RowGameController();
-        RowGameGUI gameView = new RowGameGUI(gameModel); // Observers | PropertyChangeListener
-        gameModel.setView(gameView);
-        gameController.setModel(gameModel);
-        gameController.resetModel();
-
         assertEquals("1", gameModel.getPlayer());
         assertEquals(9, gameModel.getMovesLeft());
 
@@ -51,18 +54,12 @@ public class TestModel {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNewBlockViolatesPrecondition() {
-        RowBlockModel block = new RowBlockModel(null, 0, 0);
+        RowBlockModel block = new RowBlockModel(null);
         block.setContents(null);
     }
 
     @Test
     public void testGamePlayisWinCheck() {
-        RowGameController gameController = new RowGameController();
-        RowGameGUI gameView = new RowGameGUI(gameModel); // Observers | PropertyChangeListener
-        gameModel.setView(gameView);
-        gameController.setModel(gameModel);
-        gameController.resetModel();
-
         // Vertical Win Check
         gameModel.getBlocksData()[2][0].setContents("X");
         assertEquals(false, gameModel.isWin(2, 0));
