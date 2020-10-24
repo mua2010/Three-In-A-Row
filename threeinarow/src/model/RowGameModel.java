@@ -28,7 +28,7 @@ public class RowGameModel implements RowGameRulesStrategy{
         
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                blocksData[row][col] = new RowBlockModel();
+                blocksData[row][col] = new RowBlockModel(this);
             } // end for col
         } // end for row
         player = "1";
@@ -43,25 +43,25 @@ public class RowGameModel implements RowGameRulesStrategy{
         return this.finalResult;
     }
 
-    public void setFinalResult(String finalResult) {
-        this.finalResult = finalResult;
-    }
+    // public void setFinalResult(String finalResult) {
+    //     this.finalResult = finalResult;
+    // }
 
     public String getPlayer() {
         return this.player;
     }
 
-    public void setPlayer(String player) {
-        this.player = player;
-    }
+    // public void setPlayer(String player) {
+    //     this.player = player;
+    // }
 
     public int getMovesLeft() {
         return this.movesLeft;
     }
 
-    public void setMovesLeft(int movesLeft) {
-        this.movesLeft = movesLeft;
-    }
+    // public void setMovesLeft(int movesLeft) {
+    //     this.movesLeft = movesLeft;
+    // }
 
     public RowBlockModel[][] getBlocksData() {
         return this.blocksData;
@@ -125,10 +125,13 @@ public class RowGameModel implements RowGameRulesStrategy{
             currentPlayerSymbol = "X";
         else
             currentPlayerSymbol = "O";
+
         movesLeft--;
+
         int[] blockIndex = getBlockIndex(block);
         int row = blockIndex[0];
         int col = blockIndex[1];
+
         blocksData[row][col].setContents(currentPlayerSymbol);
         blocksData[row][col].setIsLegalMove(false);
 
@@ -138,21 +141,21 @@ public class RowGameModel implements RowGameRulesStrategy{
         if (movesLeft < 7) {
             if (isWin(row, col)) {
                 if (player.equals("1"))
-                    this.setFinalResult(PLAYER_1_WINS);
+                    this.finalResult = PLAYER_1_WINS;
                 else
-                    this.setFinalResult(PLAYER_2_WINS);
+                    this.finalResult = PLAYER_2_WINS;
                 endGame();
             }
             else if (movesLeft  == 0) {
-                this.setFinalResult(GAME_END_NOWINNER);
+                this.finalResult = GAME_END_NOWINNER;
             }
         }
 
         // change player
         if (player.equals("1"))
-            this.setPlayer("2");
+            this.player = "2";
         else
-            this.setPlayer("1");
+            this.player = "1";
 
         gameView.update(this);
     }
@@ -163,9 +166,9 @@ public class RowGameModel implements RowGameRulesStrategy{
         int rowCounter = 0;
 		int colCounter = 0;
 		int leftDiagonalCounter = 0;
-		int rightDiagonalCounter = 0;
-        String playerSymbol = "X"; // player "1"
+        int rightDiagonalCounter = 0;
         
+        String playerSymbol = "X"; // player "1"
 		if (player == "2")
             playerSymbol = "O";
 

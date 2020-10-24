@@ -5,6 +5,11 @@ package model;
  */
 public class RowBlockModel {
     /**
+     * The game that contains this block
+     */
+    private RowGameModel game;
+
+    /**
      * The current value of the contents of this block
      */
     private String contents;
@@ -17,15 +22,23 @@ public class RowBlockModel {
     /**
      * Creates a new block that will be contained in the given game.
      *
+     * @param game The game that will contain the new block
+     * @throws IllegalArgumentException When the given game is null
      */
-    public RowBlockModel() {
+    public RowBlockModel(RowGameModel game) {
         super();
+
+        if (game == null) {
+            throw new IllegalArgumentException("The game must be non-null.");
+        }
+
+        this.game = game;
         this.reset();
     }
 
-    // public RowGameModel getGame() {
-    //     return this.game;
-    // }
+    public RowGameModel getGame() {
+        return this.game;
+    }
 
     /**
      * Sets the contents of this block to the given value.
