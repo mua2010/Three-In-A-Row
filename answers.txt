@@ -1,0 +1,5 @@
+    decided to move the game rules logic from the Controller to the Model:
+
+    - The Model contains the data representation. It also is responsible for implementing the game rules logic and will use the Strategy design pattern.
+    - The Views visualize different parts of that data representation.
+    - The Controller is now only responsible for receiving commands (e.g., move, reset) and then has the Model perform those commands (e.g., move method, resetGame).
