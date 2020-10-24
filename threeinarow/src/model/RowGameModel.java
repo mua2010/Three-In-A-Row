@@ -69,6 +69,10 @@ public class RowGameModel implements RowGameRulesStrategy {
         this.gameView = gameView;
     }
 
+    public void updateView() {
+        this.gameView.update(this);
+    }
+
     public String getFinalResult() {
         return this.finalResult;
     }
@@ -116,7 +120,6 @@ public class RowGameModel implements RowGameRulesStrategy {
         this.player = Player.X.getPlayer();
         this.movesLeft = rows * cols;
         this.finalResult = null;
-		this.gameView.update(this);
     }
     
     /**
@@ -160,8 +163,6 @@ public class RowGameModel implements RowGameRulesStrategy {
             this.player = Player.O.getPlayer();
         else
             this.player = Player.X.getPlayer();
-
-        gameView.update(this);
     }
 
 
@@ -214,6 +215,5 @@ public class RowGameModel implements RowGameRulesStrategy {
 				this.blocksData[row][column].setIsLegalMove(false);
 			}
 		}
-		gameView.update(this);
 	}
 }

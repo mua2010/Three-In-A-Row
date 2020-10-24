@@ -29,9 +29,11 @@ public class RowGameController {
 
 	public void sendResetRequest() {
 		this.gameModel.reset();
+		this.gameModel.updateView();
 	}
 
 	public void sendUpdateGameStateRequest(GameJButton buttonPressed) {
 		this.gameModel.move(buttonPressed.getRow(), buttonPressed.getCol());
+		this.gameModel.updateView();
 	}
 }
