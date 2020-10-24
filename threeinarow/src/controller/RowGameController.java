@@ -1,6 +1,7 @@
 package controller;
 
 import model.RowGameModel;
+import view.GameJButton;
 
 /**
  * Java implementation of the 3 in a row game, using the Swing framework.
@@ -21,16 +22,16 @@ public class RowGameController {
 		// gameModel.reset();
 	}
 
-	public void setModel(RowGameModel gameModel) {
+	public void initializeGame(RowGameModel gameModel) {
 		this.gameModel = gameModel;
+		sendResetRequest();
 	}
 
-	public void sendRequest() {
-
-	}
-
-	public void resetModel() {
+	public void sendResetRequest() {
 		this.gameModel.reset();
 	}
 
+	public void sendUpdateGameStateRequest(GameJButton buttonPressed) {
+		this.gameModel.move(buttonPressed.getRow(), buttonPressed.getCol());
+	}
 }

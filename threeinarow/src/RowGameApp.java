@@ -33,12 +33,10 @@ public class RowGameApp {
         String gameType = "THREE_IN_A_ROW";
         RowGameModel gameModel = new RowGameModel(gameType, rows, cols); // Observable | PropertyChangeSupport
         RowGameController gameController = new RowGameController();
-        RowGameGUI gameView = new RowGameGUI(gameModel); // Observers | PropertyChangeListener
+        RowGameGUI gameView = new RowGameGUI(gameModel, gameController); // Observers | PropertyChangeListener
         
         gameModel.setView(gameView);
-        gameController.setModel(gameModel);
-        gameController.resetModel();
-
+        gameController.initializeGame(gameModel);
         gameView.getGui().setVisible(true);
     }
 }
