@@ -4,7 +4,7 @@ import javax.swing.JButton;
 
 import view.RowGameGUI;
 
-public class RowGameModel implements RowGameRulesStrategy{
+public class RowGameModel implements RowGameRulesStrategy {
     public enum Player {
         X ("1"),
         O ("2"),
@@ -39,6 +39,7 @@ public class RowGameModel implements RowGameRulesStrategy{
     // private String gameType;
     private RowGameGUI gameView;
 
+    // Change: Game takes dimensions in constructor
     public RowGameModel(int rows, int cols) {
         super();
         this.rows = rows;
@@ -114,38 +115,16 @@ public class RowGameModel implements RowGameRulesStrategy{
         this.finalResult = null;
 		this.gameView.update(this);
     }
-
-    @Override
-    public void move(int row, int col) {
-        
-    }
-
-    /**
-     * 
-     * @param block
-     * @return the row and col index of the block in the game board
-     */
-    private int[] getBlockIndex(JButton block) {
-        int[] ans = new int[2]; 
-        JButton[][] boardViewBlocks = gameView.getGameBoardView().getBlocks();
-        for (int r = 0; r < blocksData.length; r++) {
-            for (int c = 0; c < blocksData[0].length; c++) {
-                if (block == boardViewBlocks[r][c]) {
-                    ans[0] = r;
-                    ans[1] = c;
-                    break;
-                }
-            }
-        }
-        return ans;
-    }
     
     /**
 	 * Moves the current player into the given block.
 	 *
-	 * @param block The block to be moved to by the current player
+	 * @param row The row index to be moved to by the current player
+     * @param col The col index to be moved to by the current player
 	 */
-    public void move1(JButton block) {
+    // Change: move method takes dimensions
+    @Override
+    public void move(int row, int col) {
         String currentPlayerSymbol;
         if (player.equals(Player.X.getPlayer()))
             currentPlayerSymbol = Player.X.toString();
@@ -153,10 +132,6 @@ public class RowGameModel implements RowGameRulesStrategy{
             currentPlayerSymbol = Player.O.toString();
 
         movesLeft--;
-
-        int[] blockIndex = getBlockIndex(block);
-        int row = blockIndex[0];
-        int col = blockIndex[1];
 
         blocksData[row][col].setContents(currentPlayerSymbol);
         blocksData[row][col].setIsLegalMove(false);

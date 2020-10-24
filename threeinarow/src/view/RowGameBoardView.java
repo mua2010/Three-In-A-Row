@@ -50,7 +50,10 @@ public class RowGameBoardView implements RowGameView {
                 game.add(blocks[row][column]);
                 blocks[row][column].addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        gameModel.move1((JButton) e.getSource());
+                        int[] blockIndex = getBlockIndex((JButton) e.getSource());
+                        int row = blockIndex[0];
+                        int col = blockIndex[1];
+                        gameModel.move(row, col);
                     }
                 });
             }
@@ -81,5 +84,25 @@ public class RowGameBoardView implements RowGameView {
     protected void updateBlock(RowGameModel gameModel, int row, int col) {
         blocks[row][col].setText(gameModel.getBlocksData()[row][col].getContents());
         blocks[row][col].setEnabled(gameModel.getBlocksData()[row][col].getIsLegalMove());
+    }
+
+    /**
+     * Returns the (x,y) coordinates of the block
+     * 
+     * @param block
+     * @return the row and col index of the block in the game board
+     */
+    public int[] getBlockIndex(JButton block) {
+        int[] ans = new int[2]; 
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (block == this.blocks[r][c]) {
+                    ans[0] = r;
+                    ans[1] = c;
+                    break;
+                }
+            }
+        }
+        return ans;
     }
 }
