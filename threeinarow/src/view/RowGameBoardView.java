@@ -16,7 +16,7 @@ import model.RowGameModel;
 
 public class RowGameBoardView implements RowGameView {
     // CHANGE: Made class variables private
-    private JButton[][] blocks = new JButton[3][3];
+    private JButton[][] blocks;
     private JPanel gamePanel = new JPanel(new FlowLayout());
     private int  rows;
     private int cols;
@@ -39,6 +39,7 @@ public class RowGameBoardView implements RowGameView {
         super();
         this.rows = gameModel.getRows();
         this.cols = gameModel.getCols();
+        this.blocks = new JButton[this.rows][this.cols];
         JPanel game = new JPanel(new GridLayout(this.rows, this.cols));
         gamePanel.add(game, BorderLayout.CENTER);
 
