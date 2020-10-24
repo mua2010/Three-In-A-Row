@@ -29,7 +29,7 @@ public class ThreeInARowGameModel extends GameModel {
     @Override
     public void move(int row, int col) {
         super.move(row, col);
-        // on each move, enable the box above the current move
+        // on each move, enable the box above the current box
         if (row != 0)
             super.getBlocksData()[row-1][col].setIsLegalMove(true);
     }

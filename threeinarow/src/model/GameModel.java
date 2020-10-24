@@ -100,7 +100,6 @@ public class GameModel implements RowGameRulesStrategy {
         this.player = Player.X.getPlayer();
         this.movesLeft = rows * cols;
         this.finalResult = null;
-
     }
     
     /**

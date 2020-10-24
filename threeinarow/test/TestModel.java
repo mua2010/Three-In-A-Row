@@ -3,8 +3,9 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import model.RowBlockModel;
-import model.RowGameModel;
+import model.BlockModel;
+import model.GameModel;
+import model.ThreeInARowGameModel;
 import view.RowGameGUI;
 import controller.RowGameController;
 
@@ -12,13 +13,13 @@ import controller.RowGameController;
  * An example test class, which merely shows how to write JUnit tests.
  */
 public class TestModel {
-    private RowGameModel gameModel;
+    private GameModel gameModel;
     RowGameController gameController;
     RowGameGUI gameView;
 
     @Before
     public void setUp() {
-        gameModel = new RowGameModel("THREE_IN_A_ROW", 3, 3);
+        gameModel = new ThreeInARowGameModel("THREE_IN_A_ROW", 3, 3);
         gameController = new RowGameController();
         gameView = new RowGameGUI(gameModel, gameController); // Observers | PropertyChangeListener
         
@@ -41,7 +42,7 @@ public class TestModel {
         gameModel.reset();
         // Checking if only the bottom row is activated and 
         // rest of the blocks are false
-        RowBlockModel[][] blocksData = gameModel.getBlocksData();
+        BlockModel[][] blocksData = gameModel.getBlocksData();
         for (int r = 0; r < blocksData.length - 1; r++) {
             for (int c = 0; c < blocksData[0].length; c++) {
                 assertEquals(false, blocksData[r][c].getIsLegalMove());
@@ -54,7 +55,7 @@ public class TestModel {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNewBlockViolatesPrecondition() {
-        RowBlockModel block = new RowBlockModel(null);
+        BlockModel block = new BlockModel(null);
         block.setContents(null);
     }
 

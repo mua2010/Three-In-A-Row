@@ -10,7 +10,12 @@ public class TicTacToeModel extends GameModel {
     @Override
     public void reset() {
         super.reset();
-
+        for (int row = 0; row < super.getRows(); row++) {
+            for (int column = 0; column < super.getCols(); column++) {
+                // Enable all the blocks
+                super.getBlocksData()[row][column].setIsLegalMove(true);
+            }
+        }
     }
 
     @Override
