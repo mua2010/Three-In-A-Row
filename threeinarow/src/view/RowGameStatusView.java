@@ -6,7 +6,6 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import controller.RowGameController;
 import model.RowGameModel;
 
 public class RowGameStatusView implements RowGameView {
