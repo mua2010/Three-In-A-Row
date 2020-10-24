@@ -1,7 +1,5 @@
 package model;
 
-import javax.swing.JButton;
-
 import view.RowGameGUI;
 
 public class RowGameModel implements RowGameRulesStrategy {

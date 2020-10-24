@@ -1,15 +1,6 @@
 package controller;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import java.awt.*;
-import java.awt.event.*;
-
 import model.RowGameModel;
-import view.RowGameBoardView;
-import view.RowGameGUI;
 
 /**
  * Java implementation of the 3 in a row game, using the Swing framework.
@@ -37,7 +28,7 @@ public class RowGameController {
 	public void sendRequest() {
 
 	}
-	
+
 	public void resetModel() {
 		this.gameModel.reset();
 	}
