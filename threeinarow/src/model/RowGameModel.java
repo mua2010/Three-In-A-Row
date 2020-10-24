@@ -5,6 +5,20 @@ import javax.swing.JButton;
 import view.RowGameGUI;
 
 public class RowGameModel implements RowGameRulesStrategy{
+    public enum Player {
+        X ("1"),
+        O ("2"),
+        ; 
+
+        private final String player;
+    
+        private Player(String player) {
+            this.player = player;
+        }
+        public String getPlayer() {
+            return this.player;
+        }
+    }
 
     private static final String GAME_END_NOWINNER = "Game ends in a draw";
     private static final String PLAYER_1_WINS = "Player 1 wins!";
@@ -31,7 +45,7 @@ public class RowGameModel implements RowGameRulesStrategy{
                 blocksData[row][col] = new RowBlockModel(this);
             } // end for col
         } // end for row
-        player = "1";
+        player = Player.X.getPlayer();
         movesLeft = 9;
     }
 
@@ -83,7 +97,7 @@ public class RowGameModel implements RowGameRulesStrategy{
 				this.blocksData[row][column].setIsLegalMove(row == 2);
 			}
 		}
-        this.player = "1";
+        this.player = Player.X.getPlayer();
         this.movesLeft = 9;
         this.finalResult = null;
 		this.gameView.update(this);
@@ -121,10 +135,10 @@ public class RowGameModel implements RowGameRulesStrategy{
 	 */
     public void move1(JButton block) {
         String currentPlayerSymbol;
-        if (player.equals("1"))
-            currentPlayerSymbol = "X";
+        if (player.equals(Player.X.getPlayer()))
+            currentPlayerSymbol = Player.X.toString();
         else
-            currentPlayerSymbol = "O";
+            currentPlayerSymbol = Player.O.toString();
 
         movesLeft--;
 
@@ -140,7 +154,7 @@ public class RowGameModel implements RowGameRulesStrategy{
 
         if (movesLeft < 7) {
             if (isWin(row, col)) {
-                if (player.equals("1"))
+                if (player.equals(Player.X.getPlayer()))
                     this.finalResult = PLAYER_1_WINS;
                 else
                     this.finalResult = PLAYER_2_WINS;
@@ -152,10 +166,10 @@ public class RowGameModel implements RowGameRulesStrategy{
         }
 
         // change player
-        if (player.equals("1"))
-            this.player = "2";
+        if (player.equals(Player.X.getPlayer()))
+            this.player = Player.O.getPlayer();
         else
-            this.player = "1";
+            this.player = Player.X.getPlayer();
 
         gameView.update(this);
     }
@@ -168,9 +182,9 @@ public class RowGameModel implements RowGameRulesStrategy{
 		int leftDiagonalCounter = 0;
         int rightDiagonalCounter = 0;
         
-        String playerSymbol = "X"; // player "1"
-		if (player == "2")
-            playerSymbol = "O";
+        String playerSymbol = Player.X.toString();
+		if (player == Player.O.getPlayer())
+            playerSymbol = Player.O.toString();
 
         int boardLength = blocksData.length;
         int boardLastRowIndex = boardLength - 1;
