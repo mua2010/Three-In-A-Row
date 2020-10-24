@@ -34,6 +34,10 @@ public class RowGameController {
 		this.gameModel = gameModel;
 	}
 
+	public void sendRequest() {
+
+	}
+	
 	public void resetModel() {
 		this.gameModel.reset();
 	}

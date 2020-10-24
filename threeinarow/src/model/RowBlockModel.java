@@ -19,13 +19,17 @@ public class RowBlockModel {
      */
     private boolean isLegalMove;
 
+    // row and col indexes
+    private int row;
+    private int col;
+
     /**
      * Creates a new block that will be contained in the given game.
      *
      * @param game The game that will contain the new block
      * @throws IllegalArgumentException When the given game is null
      */
-    public RowBlockModel(RowGameModel game) {
+    public RowBlockModel(RowGameModel game, int row, int col) {
         super();
 
         if (game == null) {
@@ -33,11 +37,21 @@ public class RowBlockModel {
         }
 
         this.game = game;
+        this.row = row;
+        this.col = col;
         this.reset();
     }
 
     public RowGameModel getGame() {
         return this.game;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
     }
 
     /**

@@ -47,7 +47,7 @@ public class RowGameModel implements RowGameRulesStrategy {
         blocksData = new RowBlockModel[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                blocksData[row][col] = new RowBlockModel(this);
+                blocksData[row][col] = new RowBlockModel(this, row, col);
             } // end for col
         } // end for row
         player = Player.X.getPlayer();
@@ -94,9 +94,9 @@ public class RowGameModel implements RowGameRulesStrategy {
         return this.blocksData;
     }
 
-    public void setBlocksData(RowBlockModel[][] blocksData) {
-        this.blocksData = blocksData;
-    }
+    // public void setBlocksData(RowBlockModel[][] blocksData) {
+    //     this.blocksData = blocksData;
+    // }
 
     /**
 	 * Resets the game to be able to start playing again.
