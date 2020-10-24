@@ -16,7 +16,7 @@ public class TestModel {
 
     @Before
     public void setUp() {
-        gameModel = new RowGameModel();
+        gameModel = new RowGameModel(3, 3);
     }
 
     @After

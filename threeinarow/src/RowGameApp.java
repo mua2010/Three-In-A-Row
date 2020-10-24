@@ -27,8 +27,9 @@ public class RowGameApp {
         //     System.err.println("Please provide a valid game type Argument");
         //     System.exit(1);
         // }
-        
-        RowGameModel gameModel = new RowGameModel(); // Observable | PropertyChangeSupport
+        int rows = 3;
+        int cols = 3;
+        RowGameModel gameModel = new RowGameModel(rows, cols); // Observable | PropertyChangeSupport
         RowGameController gameController = new RowGameController();
         RowGameGUI gameView = new RowGameGUI(gameModel); // Observers | PropertyChangeListener
         

@@ -24,7 +24,9 @@ public class RowGameModel implements RowGameRulesStrategy{
     private static final String PLAYER_1_WINS = "Player 1 wins!";
     private static final String PLAYER_2_WINS = "Player 2 wins!";
     // CHANGES: Made class vars private and added getters and setters
-    private RowBlockModel[][] blocksData = new RowBlockModel[3][3];
+    private RowBlockModel[][] blocksData;
+    private int  rows;
+    private int cols;
 
     /**
      * The current player taking their turn
@@ -37,16 +39,26 @@ public class RowGameModel implements RowGameRulesStrategy{
     // private String gameType;
     private RowGameGUI gameView;
 
-    public RowGameModel() {
+    public RowGameModel(int rows, int cols) {
         super();
-        
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
+        this.rows = rows;
+        this.cols = cols;
+        blocksData = new RowBlockModel[rows][cols];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
                 blocksData[row][col] = new RowBlockModel(this);
             } // end for col
         } // end for row
         player = Player.X.getPlayer();
-        movesLeft = 9;
+        movesLeft = rows * cols;
+    }
+
+    public int getRows() {
+        return this.rows;
+    }
+
+    public int getCols() {
+        return this.cols;
     }
 
     public void setView(RowGameGUI gameView) {
@@ -90,15 +102,15 @@ public class RowGameModel implements RowGameRulesStrategy{
 	 */
     @Override
     public void reset() {
-        for (int row = 0; row < 3; row++) {
-			for (int column = 0; column < 3; column++) {
+        for (int row = 0; row < rows; row++) {
+			for (int column = 0; column < cols; column++) {
 				this.blocksData[row][column].reset();
 				// Enable the bottom row
-				this.blocksData[row][column].setIsLegalMove(row == 2);
+				this.blocksData[row][column].setIsLegalMove(row == this.blocksData.length - 1);
 			}
 		}
         this.player = Player.X.getPlayer();
-        this.movesLeft = 9;
+        this.movesLeft = rows * cols;
         this.finalResult = null;
 		this.gameView.update(this);
     }
@@ -152,7 +164,7 @@ public class RowGameModel implements RowGameRulesStrategy{
         if (row != 0)
             blocksData[row-1][col].setIsLegalMove(true);
 
-        if (movesLeft < 7) {
+        if (movesLeft < rows*cols - 2) {
             if (isWin(row, col)) {
                 if (player.equals(Player.X.getPlayer()))
                     this.finalResult = PLAYER_1_WINS;
@@ -219,8 +231,8 @@ public class RowGameModel implements RowGameRulesStrategy{
 	 * Ends the game disallowing further player turns.
 	 */
 	public void endGame() {
-		for (int row = 0; row < 3; row++) {
-			for (int column = 0; column < 3; column++) {
+		for (int row = 0; row < rows; row++) {
+			for (int column = 0; column < cols; column++) {
 				this.blocksData[row][column].setIsLegalMove(false);
 			}
 		}
