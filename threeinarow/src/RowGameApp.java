@@ -13,7 +13,7 @@ public class RowGameApp {
      * model and controller
      */
     public static void main(String[] args) {
-        // String gameType = "";
+        // int gameType = -1;
         // if (args.length > 0) 
         //     gameType = args[0];
         // else {
@@ -29,7 +29,9 @@ public class RowGameApp {
         // }
         int rows = 3;
         int cols = 3;
-        RowGameModel gameModel = new RowGameModel(rows, cols); // Observable | PropertyChangeSupport
+        // "TIC_TAC_TOE"
+        String gameType = "THREE_IN_A_ROW";
+        RowGameModel gameModel = new RowGameModel(gameType, rows, cols); // Observable | PropertyChangeSupport
         RowGameController gameController = new RowGameController();
         RowGameGUI gameView = new RowGameGUI(gameModel); // Observers | PropertyChangeListener
         

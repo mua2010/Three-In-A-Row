@@ -25,6 +25,7 @@ public class RowGameModel implements RowGameRulesStrategy {
     private RowBlockModel[][] blocksData;
     private int  rows;
     private int cols;
+    private String gameType; 
 
     /**
      * The current player taking their turn
@@ -38,8 +39,9 @@ public class RowGameModel implements RowGameRulesStrategy {
     private RowGameGUI gameView;
 
     // Change: Game takes dimensions in constructor
-    public RowGameModel(int rows, int cols) {
+    public RowGameModel(String gameType, int rows, int cols) {
         super();
+        this.gameType = gameType;
         this.rows = rows;
         this.cols = cols;
         blocksData = new RowBlockModel[rows][cols];
@@ -52,6 +54,9 @@ public class RowGameModel implements RowGameRulesStrategy {
         movesLeft = rows * cols;
     }
 
+    public String getGameType() {
+        return this.gameType;
+    }
     public int getRows() {
         return this.rows;
     }

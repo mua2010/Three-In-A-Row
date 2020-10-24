@@ -11,7 +11,7 @@ import controller.RowGameController;
 
 public class RowGameGUI implements RowGameView {
     // CHANGE: Made class variables private
-    private JFrame gui = new JFrame("Three in a Row");
+    private JFrame gui;
     private RowGameBoardView gameBoardView;
     private JButton reset = new JButton("Reset");
     private RowGameStatusView gameStatusView;
@@ -37,6 +37,7 @@ public class RowGameGUI implements RowGameView {
      */
     public RowGameGUI(RowGameModel gameModel) {
         this.gameModel = gameModel;
+        this.gui = new JFrame(gameModel.getGameType());
 
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gui.setSize(new Dimension(500, 350));
