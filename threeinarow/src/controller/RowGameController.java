@@ -1,6 +1,6 @@
 package controller;
 
-import model.RowGameModel;
+import model.GameModel;
 import view.GameJButton;
 
 /**
@@ -13,7 +13,7 @@ import view.GameJButton;
 public class RowGameController {
 	// public static final String GAME_END_NOWINNER = "Game ends in a draw";
 
-	private RowGameModel gameModel;
+	private GameModel gameModel;
 
 	/**
 	 * Creates a new game initializing the GUI.
@@ -22,7 +22,7 @@ public class RowGameController {
 		// gameModel.reset();
 	}
 
-	public void initializeGame(RowGameModel gameModel) {
+	public void initializeGame(GameModel gameModel) {
 		this.gameModel = gameModel;
 		sendResetRequest();
 	}

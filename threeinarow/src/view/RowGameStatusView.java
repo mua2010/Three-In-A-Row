@@ -6,7 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import model.RowGameModel;
+import model.GameModel;
 
 public class RowGameStatusView implements RowGameView {
 	// CHANGE: Made playerturn and messages to private
@@ -29,7 +29,7 @@ public class RowGameStatusView implements RowGameView {
 		messages.add(playerturn);
 	}
 
-	public void update(RowGameModel gameModel) {
+	public void update(GameModel gameModel) {
 		if (gameModel.getFinalResult() == null) {
 			if (gameModel.getPlayer().equals("1")) {
 				playerturn.setText("Player 1 to play 'X'");

@@ -1,29 +1,20 @@
 package model;
 
-public class TicTacToeModel implements RowGameRulesStrategy {
+public class TicTacToeModel extends GameModel {
+
+    // Change: Game takes dimensions in constructor
+    public TicTacToeModel(String gameType, int rows, int cols) {
+        super(gameType, rows, cols);
+    }
 
     @Override
     public void reset() {
-        // TODO Auto-generated method stub
+        super.reset();
 
     }
 
     @Override
     public void move(int row, int col) {
-        // TODO Auto-generated method stub
-
+        super.move(row, col);
     }
-
-    @Override
-    public boolean isWin(int row, int col) {
-        return false;
-        
-    }
-
-    @Override
-    public boolean isTie() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    
 }

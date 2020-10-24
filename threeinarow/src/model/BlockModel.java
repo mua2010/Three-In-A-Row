@@ -3,11 +3,11 @@ package model;
 /**
  * The RowBlockModel class represents a given block in the game.
  */
-public class RowBlockModel {
+public class BlockModel {
     /**
      * The game that contains this block
      */
-    private RowGameModel game;
+    private GameModel game;
 
     /**
      * The current value of the contents of this block
@@ -26,7 +26,7 @@ public class RowBlockModel {
      * @param game The game that will contain the new block
      * @throws IllegalArgumentException When the given game is null
      */
-    public RowBlockModel(RowGameModel game) {
+    public BlockModel(GameModel game) {
         super();
 
         if (game == null) {
@@ -37,7 +37,7 @@ public class RowBlockModel {
         this.reset();
     }
 
-    public RowGameModel getGame() {
+    public GameModel getGame() {
         return this.game;
     }
 

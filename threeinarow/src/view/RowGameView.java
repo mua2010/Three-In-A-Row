@@ -1,7 +1,7 @@
 package view;
 
-import model.RowGameModel;
+import model.GameModel;
 
 public interface RowGameView {
-    public void update(RowGameModel gameModel);
+    public void update(GameModel gameModel);
 }

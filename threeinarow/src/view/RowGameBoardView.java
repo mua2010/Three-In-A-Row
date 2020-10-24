@@ -9,7 +9,7 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 import adapter.Adapter;
-import model.RowGameModel;
+import model.GameModel;
 
 public class RowGameBoardView implements RowGameView {
     // CHANGE: Made class variables private
@@ -32,7 +32,7 @@ public class RowGameBoardView implements RowGameView {
         this.gamePanel = gamePanel;
     }
 
-    public RowGameBoardView(RowGameModel gameModel, Adapter gameAdapter) {
+    public RowGameBoardView(GameModel gameModel, Adapter gameAdapter) {
         super();
         this.rows = gameModel.getRows();
         this.cols = gameModel.getCols();
@@ -56,7 +56,7 @@ public class RowGameBoardView implements RowGameView {
      *
      * @param gameModel The current game model
      */
-    public void update(RowGameModel gameModel) {
+    public void update(GameModel gameModel) {
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < cols; column++) {
                 this.updateBlock(gameModel, row, column);
@@ -72,7 +72,7 @@ public class RowGameBoardView implements RowGameView {
      * @param row       The row that contains the block
      * @param column    The column that contains the block
      */
-    protected void updateBlock(RowGameModel gameModel, int row, int col) {
+    protected void updateBlock(GameModel gameModel, int row, int col) {
         blocks[row][col].setText(gameModel.getBlocksData()[row][col].getContents());
         blocks[row][col].setEnabled(gameModel.getBlocksData()[row][col].getIsLegalMove());
     }

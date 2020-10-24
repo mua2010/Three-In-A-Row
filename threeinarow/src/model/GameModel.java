@@ -2,7 +2,8 @@ package model;
 
 import view.RowGameGUI;
 
-public class RowGameModel implements RowGameRulesStrategy {
+public class GameModel implements RowGameRulesStrategy {
+
     public enum Player {
         X ("1"),
         O ("2"),
@@ -21,33 +22,30 @@ public class RowGameModel implements RowGameRulesStrategy {
     private static final String GAME_END_NOWINNER = "Game ends in a draw";
     private static final String PLAYER_1_WINS = "Player 1 wins!";
     private static final String PLAYER_2_WINS = "Player 2 wins!";
+
     // CHANGES: Made class vars private and added getters and setters
-    private RowBlockModel[][] blocksData;
+    private BlockModel[][] blocksData;
     private int  rows;
     private int cols;
-    private String gameType; 
-
-    /**
-     * The current player taking their turn
-     */
+    private String gameType;
     private String player;
     private int movesLeft;
-
     private String finalResult = null;
-
-    // private String gameType;
     private RowGameGUI gameView;
 
     // Change: Game takes dimensions in constructor
-    public RowGameModel(String gameType, int rows, int cols) {
+    /**
+     * GameModel Constructor
+     */
+    public GameModel(String gameType, int rows, int cols) {
         super();
         this.gameType = gameType;
         this.rows = rows;
         this.cols = cols;
-        blocksData = new RowBlockModel[rows][cols];
+        blocksData = new BlockModel[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                blocksData[row][col] = new RowBlockModel(this);
+                blocksData[row][col] = new BlockModel(this);
             } // end for col
         } // end for row
         player = Player.X.getPlayer();
@@ -77,33 +75,17 @@ public class RowGameModel implements RowGameRulesStrategy {
         return this.finalResult;
     }
 
-    // public void setFinalResult(String finalResult) {
-    //     this.finalResult = finalResult;
-    // }
-
     public String getPlayer() {
         return this.player;
     }
-
-    // public void setPlayer(String player) {
-    //     this.player = player;
-    // }
 
     public int getMovesLeft() {
         return this.movesLeft;
     }
 
-    // public void setMovesLeft(int movesLeft) {
-    //     this.movesLeft = movesLeft;
-    // }
-
-    public RowBlockModel[][] getBlocksData() {
+    public BlockModel[][] getBlocksData() {
         return this.blocksData;
     }
-
-    // public void setBlocksData(RowBlockModel[][] blocksData) {
-    //     this.blocksData = blocksData;
-    // }
 
     /**
 	 * Resets the game to be able to start playing again.
@@ -113,13 +95,12 @@ public class RowGameModel implements RowGameRulesStrategy {
         for (int row = 0; row < rows; row++) {
 			for (int column = 0; column < cols; column++) {
 				this.blocksData[row][column].reset();
-				// Enable the bottom row
-				this.blocksData[row][column].setIsLegalMove(row == this.blocksData.length - 1);
 			}
 		}
         this.player = Player.X.getPlayer();
         this.movesLeft = rows * cols;
         this.finalResult = null;
+
     }
     
     /**
@@ -142,9 +123,6 @@ public class RowGameModel implements RowGameRulesStrategy {
         blocksData[row][col].setContents(currentPlayerSymbol);
         blocksData[row][col].setIsLegalMove(false);
 
-        if (row != 0)
-            blocksData[row-1][col].setIsLegalMove(true);
-
         if (movesLeft < rows*cols - 2) {
             if (isWin(row, col)) {
                 if (player.equals(Player.X.getPlayer()))
@@ -162,7 +140,7 @@ public class RowGameModel implements RowGameRulesStrategy {
         if (player.equals(Player.X.getPlayer()))
             this.player = Player.O.getPlayer();
         else
-            this.player = Player.X.getPlayer();
+            this.player = Player.X.getPlayer();      
     }
 
 
@@ -216,4 +194,5 @@ public class RowGameModel implements RowGameRulesStrategy {
 			}
 		}
 	}
+    
 }

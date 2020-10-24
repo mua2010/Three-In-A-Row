@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import java.awt.*;
 
 import adapter.Adapter;
-import model.RowGameModel;
+import model.GameModel;
 import controller.RowGameController;
 
 public class RowGameGUI implements RowGameView {
@@ -16,7 +16,7 @@ public class RowGameGUI implements RowGameView {
     private JButton reset = new JButton("Reset");
     private RowGameStatusView gameStatusView;
 
-    private RowGameModel gameModel;
+    private GameModel gameModel;
     protected Adapter gameAdapter;
 
     // Made class getters and setters
@@ -36,7 +36,7 @@ public class RowGameGUI implements RowGameView {
     /**
      * Creates a new game initializing the GUI.
      */
-    public RowGameGUI(RowGameModel gameModel, RowGameController gameController) {
+    public RowGameGUI(GameModel gameModel, RowGameController gameController) {
         this.gameModel = gameModel;
         this.gameAdapter = new Adapter(this, gameController);
         this.gui = new JFrame(gameModel.getGameType());
@@ -67,7 +67,7 @@ public class RowGameGUI implements RowGameView {
      *
      * @param gameModel The current game model
      */
-    public void update(RowGameModel gameModel) {
+    public void update(GameModel gameModel) {
         gameBoardView.update(gameModel);
         gameStatusView.update(gameModel);
     }

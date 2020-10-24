@@ -1,6 +1,7 @@
 import controller.RowGameController;
 import view.RowGameGUI;
-import model.RowGameModel;
+import model.GameModel;
+import model.ThreeInARowGameModel;
 
 public class RowGameApp {
     // enum GameType {
@@ -31,7 +32,7 @@ public class RowGameApp {
         int cols = 3;
         // "TIC_TAC_TOE"
         final String GAME_TYPE = "THREE_IN_A_ROW";
-        RowGameModel gameModel = new RowGameModel(GAME_TYPE, rows, cols); // Observable | PropertyChangeSupport
+        GameModel gameModel = new ThreeInARowGameModel(GAME_TYPE, rows, cols); // Observable | PropertyChangeSupport
         RowGameController gameController = new RowGameController();
         RowGameGUI gameView = new RowGameGUI(gameModel, gameController); // Observers | PropertyChangeListener
         
