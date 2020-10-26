@@ -9,9 +9,10 @@ import javax.swing.JTextArea;
 import model.GameModel;
 import model.GameModel.Player;
 
+/**
+ * Class that updates the game status
+ */
 public class RowGameStatusView implements RowGameView {
-	// CHANGE: Made playerturn and messages to private
-	// and create getter and setter for messages
 	protected static final String PLAYER_1_TURN = "Player 1 to play 'X'";
 	protected static final String PLAYER_2_TURN = "Player 2 to play 'O'";
 	private JTextArea playerturn = new JTextArea();

@@ -24,19 +24,16 @@ public class GameModel implements RowGameRulesStrategy {
     private static final String PLAYER_2_WINS = "Player 2 wins!";
 
     // CHANGES: Made class vars private and added getters and setters
-    private BlockModel[][] blocksData;
-    private int  rows;
-    private int cols;
+    protected BlockModel[][] blocksData;
+    protected int  rows;
+    protected int cols;
     private String gameType;
     private String player;
     private int movesLeft;
     private String finalResult = null;
     private RowGameGUI gameView;
 
-    // Change: Game takes dimensions in constructor
-    /**
-     * GameModel Constructor
-     */
+    // GameModel Constructor
     public GameModel(String gameType, int rows, int cols) {
         super();
         this.gameType = gameType;
@@ -52,6 +49,16 @@ public class GameModel implements RowGameRulesStrategy {
         movesLeft = rows * cols;
     }
 
+    // This method is called after initializing the game
+    public void setView(RowGameGUI gameView) {
+        this.gameView = gameView;
+    }
+
+    // This method is called after any move is made / game resets
+    public void updateView() {
+        this.gameView.update();
+    }
+
     public String getGameType() {
         return this.gameType;
     }
@@ -61,14 +68,6 @@ public class GameModel implements RowGameRulesStrategy {
 
     public int getCols() {
         return this.cols;
-    }
-
-    public void setView(RowGameGUI gameView) {
-        this.gameView = gameView;
-    }
-
-    public void updateView() {
-        this.gameView.update();
     }
 
     public String getFinalResult() {
@@ -110,6 +109,7 @@ public class GameModel implements RowGameRulesStrategy {
 	 */
     @Override
     public void move(int row, int col) {
+        // Ignore the move if not a legal move
         if (!blocksData[row][col].getIsLegalMove())
             return;
 
@@ -121,17 +121,22 @@ public class GameModel implements RowGameRulesStrategy {
 
         movesLeft--;
 
+        // set the content of the block to the player move symbol
         blocksData[row][col].setContents(currentPlayerSymbol);
+        // make that block illegal
         blocksData[row][col].setIsLegalMove(false);
 
+        // Check for isWin condition only when at least 3 moves are made
         if (movesLeft < rows*cols - 2) {
             if (isWin(row, col, currentPlayerSymbol)) {
+                // Set the final result based on the winner
                 if (player.equals(Player.X.getPlayer()))
                     this.finalResult = PLAYER_1_WINS;
                 else
                     this.finalResult = PLAYER_2_WINS;
                 endGame();
             }
+            // Game is Tie when no more moves left to play (all blocks filled)
             else if (movesLeft  == 0) {
                 this.finalResult = GAME_END_NOWINNER;
             }

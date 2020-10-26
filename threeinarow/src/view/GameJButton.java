@@ -4,7 +4,7 @@ import javax.swing.JButton;
 
 public class GameJButton extends JButton{
     /**
-     * Child GameJButton with the ability ro store the block's row and col inde
+     * Child GameJButton with the ability to store the block's row and col inde
      */
     private static final long serialVersionUID = 1L;
     private int row;

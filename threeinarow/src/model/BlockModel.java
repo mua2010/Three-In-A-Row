@@ -4,19 +4,14 @@ package model;
  * The RowBlockModel class represents a given block in the game.
  */
 public class BlockModel {
-    /**
-     * The game that contains this block
-     */
+
+    // The game that contains this block
     private GameModel game;
 
-    /**
-     * The current value of the contents of this block
-     */
+    // The current value of the contents of this block
     private String contents;
 
-    /**
-     * Whether or not it is currently legal to move into this block
-     */
+    // Whether or not it is currently legal to move into this block
     private boolean isLegalMove;
 
 
@@ -63,10 +58,12 @@ public class BlockModel {
         return this.contents;
     }
 
+    // Set if the current block is a legal move
     public void setIsLegalMove(boolean isLegalMove) {
         this.isLegalMove = isLegalMove;
     }
 
+    // get if the current block is a legal move
     public boolean getIsLegalMove() {
         return this.isLegalMove;
     }

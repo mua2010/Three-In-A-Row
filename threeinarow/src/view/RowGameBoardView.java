@@ -11,7 +11,6 @@ import adapter.Adapter;
 import model.GameModel;
 
 public class RowGameBoardView implements RowGameView {
-    // CHANGE: Made class variables private
     private GameJButton[][] blocks;
     private JPanel gamePanel = new JPanel(new FlowLayout());
     private int  rows;

@@ -6,10 +6,12 @@ import model.TicTacToeModel;
 
 public class RowGameApp {
     public static void main(String[] args) {
-        int gameType = 1;
+        // "THREE_IN_A_ROW" -> 0 
+        // "TIC_TAC_TOE" -> 1
+        int argument = 1;
         if (args.length > 0)
             try {
-                gameType = Integer.parseInt(args[0]);
+                argument = Integer.parseInt(args[0]);
             } catch (IllegalArgumentException iAE) {
                 System.err.println("Please provide a valid game type Argument");
                 System.err.println("0 -> THREE_IN_A_ROW | 1 -> TIC_TAC_TOE");
@@ -25,7 +27,7 @@ public class RowGameApp {
         String GAME_TYPE;
         GameModel gameModel;
 
-        if (gameType == 0) {
+        if (argument == 0) {
             GAME_TYPE = "THREE_IN_A_ROW"; // 0 
             gameModel = new ThreeInARowGameModel(GAME_TYPE, rows, cols); // Observable | PropertyChangeSupport
         }   
