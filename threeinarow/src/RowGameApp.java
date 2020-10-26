@@ -5,15 +5,6 @@ import model.ThreeInARowGameModel;
 import model.TicTacToeModel;
 
 public class RowGameApp {
-    // enum GameType {
-    //     TicTacToe,
-    //     ThreeInARow
-    // }
-    /**
-     * Starts a new game in the GUI. MY proposed fix is implemented partially, I
-     * will make necessary changes to keep the view code inside view folder. same for
-     * model and controller
-     */
     public static void main(String[] args) {
         int gameType = 1;
         if (args.length > 0)
