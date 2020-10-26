@@ -68,7 +68,7 @@ public class GameModel implements RowGameRulesStrategy {
     }
 
     public void updateView() {
-        this.gameView.update(this);
+        this.gameView.update();
     }
 
     public String getFinalResult() {
@@ -108,9 +108,11 @@ public class GameModel implements RowGameRulesStrategy {
 	 * @param row The row index to be moved to by the current player
      * @param col The col index to be moved to by the current player
 	 */
-    // Change: move method takes dimensions
     @Override
     public void move(int row, int col) {
+        if (!blocksData[row][col].getIsLegalMove())
+            return;
+
         String currentPlayerSymbol;
         if (player.equals(Player.X.getPlayer()))
             currentPlayerSymbol = Player.X.toString();
@@ -123,7 +125,7 @@ public class GameModel implements RowGameRulesStrategy {
         blocksData[row][col].setIsLegalMove(false);
 
         if (movesLeft < rows*cols - 2) {
-            if (isWin(row, col)) {
+            if (isWin(row, col, currentPlayerSymbol)) {
                 if (player.equals(Player.X.getPlayer()))
                     this.finalResult = PLAYER_1_WINS;
                 else
@@ -142,17 +144,18 @@ public class GameModel implements RowGameRulesStrategy {
             this.player = Player.X.getPlayer();      
     }
 
-
+    /**
+	 * Check if the current move resulted in a win
+	 *
+	 * @param row The row index to be moved to by the current player
+     * @param col The col index to be moved to by the current player
+	 */
     @Override
-    public boolean isWin(int row, int col) {
+    public boolean isWin(int row, int col, String playerSymbol) {
         int rowCounter = 0;
 		int colCounter = 0;
 		int leftDiagonalCounter = 0;
         int rightDiagonalCounter = 0;
-        
-        String playerSymbol = Player.X.toString();
-		if (player == Player.O.getPlayer())
-            playerSymbol = Player.O.toString();
 
         int boardLength = blocksData.length;
         int boardLastRowIndex = boardLength - 1;
