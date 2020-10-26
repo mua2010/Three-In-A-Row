@@ -45,7 +45,7 @@ public class TestTicTacToeModel {
     public void testNewGame() {
         assertEquals(3, gameModel.getRows());
         assertEquals(3, gameModel.getCols());
-        assertEquals("1", gameModel.getPlayer());
+        assertEquals("X", gameModel.getPlayer());
         assertEquals(9, gameModel.getMovesLeft());
         assertEquals(null, gameModel.getFinalResult());
     }

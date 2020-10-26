@@ -4,21 +4,8 @@ import view.RowGameGUI;
 
 public class GameModel implements RowGameRulesStrategy {
 
-    public enum Player {
-        X ("1"),
-        O ("2"),
-        ; 
-
-        private final String player;
-    
-        private Player(String player) {
-            this.player = player;
-        }
-        public String getPlayer() {
-            return this.player;
-        }
-    }
-
+    public static final String PLAYER_1 = "X";
+    public static final String PLAYER_2 = "O";
     private static final String GAME_END_NOWINNER = "Game ends in a draw";
     private static final String PLAYER_1_WINS = "Player 1 wins!";
     private static final String PLAYER_2_WINS = "Player 2 wins!";
@@ -45,7 +32,7 @@ public class GameModel implements RowGameRulesStrategy {
                 blocksData[row][col] = new BlockModel(this);
             } // end for col
         } // end for row
-        player = Player.X.getPlayer();
+        player = PLAYER_1;
         movesLeft = rows * cols;
     }
 
@@ -96,7 +83,7 @@ public class GameModel implements RowGameRulesStrategy {
 				this.blocksData[row][column].reset();
 			}
 		}
-        this.player = Player.X.getPlayer();
+        this.player = PLAYER_1;
         this.movesLeft = rows * cols;
         this.finalResult = null;
     }
@@ -113,24 +100,18 @@ public class GameModel implements RowGameRulesStrategy {
         if (!blocksData[row][col].getIsLegalMove())
             return;
 
-        String currentPlayerSymbol;
-        if (player.equals(Player.X.getPlayer()))
-            currentPlayerSymbol = Player.X.toString();
-        else
-            currentPlayerSymbol = Player.O.toString();
-
         movesLeft--;
 
         // set the content of the block to the player move symbol
-        blocksData[row][col].setContents(currentPlayerSymbol);
+        blocksData[row][col].setContents(player);
         // make that block illegal
         blocksData[row][col].setIsLegalMove(false);
 
         // Check for isWin condition only when at least 3 moves are made
         if (movesLeft < rows*cols - 2) {
-            if (isWin(row, col, currentPlayerSymbol)) {
+            if (isWin(row, col, player)) {
                 // Set the final result based on the winner
-                if (player.equals(Player.X.getPlayer()))
+                if (player.equals(PLAYER_1))
                     this.finalResult = PLAYER_1_WINS;
                 else
                     this.finalResult = PLAYER_2_WINS;
@@ -143,10 +124,10 @@ public class GameModel implements RowGameRulesStrategy {
         }
 
         // change player
-        if (player.equals(Player.X.getPlayer()))
-            this.player = Player.O.getPlayer();
+        if (player.equals(PLAYER_1))
+            this.player = PLAYER_2;
         else
-            this.player = Player.X.getPlayer();      
+            this.player = PLAYER_1;      
     }
 
     /**
@@ -156,7 +137,7 @@ public class GameModel implements RowGameRulesStrategy {
      * @param col The col index to be moved to by the current player
 	 */
     @Override
-    public boolean isWin(int row, int col, String playerSymbol) {
+    public boolean isWin(int row, int col, String player) {
         int rowCounter = 0;
 		int colCounter = 0;
 		int leftDiagonalCounter = 0;
@@ -167,13 +148,13 @@ public class GameModel implements RowGameRulesStrategy {
         
         int counter = 0;
         while (counter < boardLength) {
-            if (blocksData[row][counter].getContents().equals(playerSymbol))
+            if (blocksData[row][counter].getContents().equals(player))
                 rowCounter++;
-            if (blocksData[counter][col].getContents().equals(playerSymbol))
+            if (blocksData[counter][col].getContents().equals(player))
                 colCounter++;
-            if (blocksData[boardLastRowIndex - counter][counter].getContents().equals(playerSymbol))
+            if (blocksData[boardLastRowIndex - counter][counter].getContents().equals(player))
                 leftDiagonalCounter++;
-            if (blocksData[counter][counter].getContents().equals(playerSymbol))
+            if (blocksData[counter][counter].getContents().equals(player))
                 rightDiagonalCounter++;
             counter++;
         }

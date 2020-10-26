@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import model.GameModel;
-import model.GameModel.Player;
 
 /**
  * Class that updates the game status
@@ -41,8 +40,7 @@ public class RowGameStatusView implements RowGameView {
 
 	public void update() {
 		if (gameModel.getFinalResult() == null) {
-
-			if (gameModel.getPlayer().equals(Player.X.getPlayer())) {
+			if (gameModel.getPlayer().equals(gameModel.PLAYER_1)) {
 				playerturn.setText(PLAYER_1_TURN);
 			} else {
 				playerturn.setText(PLAYER_2_TURN);
