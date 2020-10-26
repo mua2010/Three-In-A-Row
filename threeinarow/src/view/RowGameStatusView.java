@@ -7,12 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import model.GameModel;
+import model.GameModel.Player;
 
 public class RowGameStatusView implements RowGameView {
 	// CHANGE: Made playerturn and messages to private
 	// and create getter and setter for messages
+	protected static final String PLAYER_1_TURN = "Player 1 to play 'X'";
+	protected static final String PLAYER_2_TURN = "Player 2 to play 'O'";
 	private JTextArea playerturn = new JTextArea();
 	private JPanel messages = new JPanel(new FlowLayout());
+	private GameModel gameModel;
+
+	public JTextArea getPlayerturn(){
+		return this.playerturn;
+	}
 
 	public JPanel getMessages(){
 		return this.messages;
@@ -22,19 +30,21 @@ public class RowGameStatusView implements RowGameView {
 		this.messages = msgs;
 	}
 
-	public RowGameStatusView() {
+	public RowGameStatusView(GameModel gameModel) {
 		super();
+		this.gameModel = gameModel;
 
 		messages.setBackground(Color.white);
 		messages.add(playerturn);
 	}
 
-	public void update(GameModel gameModel) {
+	public void update() {
 		if (gameModel.getFinalResult() == null) {
-			if (gameModel.getPlayer().equals("1")) {
-				playerturn.setText("Player 1 to play 'X'");
+
+			if (gameModel.getPlayer().equals(Player.X.getPlayer())) {
+				playerturn.setText(PLAYER_1_TURN);
 			} else {
-				playerturn.setText("Player 2 to play 'O'");
+				playerturn.setText(PLAYER_2_TURN);
 			}
 		} else {
 			playerturn.setText(gameModel.getFinalResult());

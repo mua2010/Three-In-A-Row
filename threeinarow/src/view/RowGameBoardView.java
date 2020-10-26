@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-// import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import adapter.Adapter;
@@ -17,6 +16,7 @@ public class RowGameBoardView implements RowGameView {
     private JPanel gamePanel = new JPanel(new FlowLayout());
     private int  rows;
     private int cols;
+    private GameModel gameModel;
 
     // Made class getters and setters
     public GameJButton[][] getBlocks(){
@@ -31,16 +31,21 @@ public class RowGameBoardView implements RowGameView {
     public void setGamePanel(JPanel gamePanel){
         this.gamePanel = gamePanel;
     }
+    public String getButtonText(int row, int col){
+        return this.blocks[row][col].getText();
+    }
 
+    // CONSTRUCTOR
     public RowGameBoardView(GameModel gameModel, Adapter gameAdapter) {
         super();
+        this.gameModel = gameModel;
         this.rows = gameModel.getRows();
         this.cols = gameModel.getCols();
         this.blocks = new GameJButton[this.rows][this.cols];
         JPanel game = new JPanel(new GridLayout(this.rows, this.cols));
         gamePanel.add(game, BorderLayout.CENTER);
 
-        // Initialize a JButton for each cell of the 3x3 game board.
+        // Initialize a JButton for each cell of the (rows x cols) game board.
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < cols; column++) {
                 blocks[row][column] = new GameJButton(row, column);
@@ -53,13 +58,11 @@ public class RowGameBoardView implements RowGameView {
 
     /**
      * Updates the game view after the game model changes state.
-     *
-     * @param gameModel The current game model
      */
-    public void update(GameModel gameModel) {
+    public void update() {
         for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < cols; column++) {
-                this.updateBlock(gameModel, row, column);
+            for (int col = 0; col < cols; col++) {
+                this.updateBlock(row, col);
             } // end for col
         } // end for row
     }
@@ -67,12 +70,10 @@ public class RowGameBoardView implements RowGameView {
     /**
      * Updates the block view at the given row and column after the game model
      * changes state.
-     *
-     * @param gameModel The game model
      * @param row       The row that contains the block
      * @param column    The column that contains the block
      */
-    protected void updateBlock(GameModel gameModel, int row, int col) {
+    protected void updateBlock(int row, int col) {
         blocks[row][col].setText(gameModel.getBlocksData()[row][col].getContents());
         blocks[row][col].setEnabled(gameModel.getBlocksData()[row][col].getIsLegalMove());
     }

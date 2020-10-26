@@ -29,6 +29,9 @@ public class RowGameGUI implements RowGameView {
     public void setGameBoardView(RowGameBoardView gameBoardView){
         this.gameBoardView = gameBoardView;
     }
+    public RowGameStatusView getGameStatusView(){
+        return gameStatusView;
+    }
     public JButton getResetButton() {
         return this.reset;
     }
@@ -51,7 +54,7 @@ public class RowGameGUI implements RowGameView {
         JPanel options = new JPanel(new FlowLayout());
         options.add(reset);
 
-        gameStatusView = new RowGameStatusView();
+        gameStatusView = new RowGameStatusView(gameModel);
         // called the getter instead of the class variable
         JPanel messages = gameStatusView.getMessages();
 
@@ -67,8 +70,8 @@ public class RowGameGUI implements RowGameView {
      *
      * @param gameModel The current game model
      */
-    public void update(GameModel gameModel) {
-        gameBoardView.update(gameModel);
-        gameStatusView.update(gameModel);
+    public void update() {
+        gameBoardView.update();
+        gameStatusView.update();
     }
 }
